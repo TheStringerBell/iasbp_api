@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/start")
+@RequestMapping("/home")
 public class MainController {
 
     @Autowired
@@ -28,16 +28,16 @@ public class MainController {
     private TempRepo tempRepo;
 
 
-    @GetMapping(path="/add")
-    public @ResponseBody
-    void addNewHumiData (@RequestParam String time
-            , @RequestParam String date, @RequestParam String value) {
-        GetHumiData getHumiData = new GetHumiData();
-        getHumiData.setDate(date);
-        getHumiData.setTime(time);
-        getHumiData.setValue(value);
-        humiRepo.save(getHumiData);
-    }
+//    @GetMapping(path="/add")
+//    public @ResponseBody
+//    void addNewHumiData (@RequestParam String time
+//            , @RequestParam String date, @RequestParam String value) {
+//        GetHumiData getHumiData = new GetHumiData();
+//        getHumiData.setDate(date);
+//        getHumiData.setTime(time);
+//        getHumiData.setValue(value);
+//        humiRepo.save(getHumiData);
+//    }
 
     @GetMapping(path="/GetHumiData")
     public @ResponseBody Iterable<GetHumiData> getAllHumiData() {
