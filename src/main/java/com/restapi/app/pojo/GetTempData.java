@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class GetTempData {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-//    private Integer id;
+
 
     private String Date;
     private String Time;
@@ -30,11 +30,5 @@ public class GetTempData {
     public void setValue(String Value) {
         this.Value = Value;
     }
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
+
 }

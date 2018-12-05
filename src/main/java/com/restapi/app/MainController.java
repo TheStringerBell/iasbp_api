@@ -1,21 +1,20 @@
 package com.restapi.app;
 
 
+import com.restapi.app.pojo.GetControlData;
 import com.restapi.app.pojo.GetHumiData;
 import com.restapi.app.pojo.GetInsideData;
 import com.restapi.app.pojo.GetTempData;
+import com.restapi.app.repos.ControlRepo;
 import com.restapi.app.repos.HumiRepo;
 import com.restapi.app.repos.InsideRepo;
 import com.restapi.app.repos.TempRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping(value = "/home")
 public class MainController {
 
     @Autowired
@@ -27,17 +26,16 @@ public class MainController {
     @Autowired
     private TempRepo tempRepo;
 
+    @Autowired
+    private ControlRepo controlRepo;
 
-//    @GetMapping(path="/add")
-//    public @ResponseBody
-//    void addNewHumiData (@RequestParam String time
-//            , @RequestParam String date, @RequestParam String value) {
-//        GetHumiData getHumiData = new GetHumiData();
-//        getHumiData.setDate(date);
-//        getHumiData.setTime(time);
-//        getHumiData.setValue(value);
-//        humiRepo.save(getHumiData);
-//    }
+
+    @RequestMapping(path="/add")
+    public @ResponseBody
+    void setControl (@RequestParam(value = "mode", defaultValue = "0") String i, @RequestParam(value = "system", defaultValue = "humiCont") String system) {
+        controlRepo.updateControl(i, system);
+
+    }
 
     @GetMapping(path="/GetHumiData")
     public @ResponseBody Iterable<GetHumiData> getAllHumiData() {
